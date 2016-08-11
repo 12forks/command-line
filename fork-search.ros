@@ -7,6 +7,8 @@ exec ros -Q -- $0 "$@"
   (:use :cl))
 (in-package :ros.script.fork-search.3679653190)
 
+(defvar *test-repo* "marijnh/Postmodern")
+
 ;; suppress output from loading libraries
 (with-output-to-string (*standard-output*)
   (ql:quickload :drakma)
@@ -17,6 +19,21 @@ exec ros -Q -- $0 "$@"
 (defun repo-author (repo)
   "For 'svetlyak40wt/foo@bar' string returns 'svetlyak40wt'"
   (subseq repo 0 (position #\/ repo)))
+
+
+(defun last-character (string)
+  (aref string (1- (length string))))
+
+
+(defun beautify-sentence (sentence)
+  "Normalizes piece of text by capitalizing first character and adding dot at the end if needed."
+  (let* ((length (length sentence))
+         (last-char (last-character sentence))
+         (capitalized (string-capitalize sentence :end (min 1 length))))
+    (if (alphanumericp last-char)
+        ;; add a dot
+        (concatenate 'string capitalized ".")
+        capitalized)))
 
 
 (defun repo-branch (repo)
@@ -34,18 +51,6 @@ exec ros -Q -- $0 "$@"
     message))
 
 
-(defun get-fork-commits (base fork)
-  "Returns a list of strings with commit messages"
-  
-  (let* ((data (get-data "/repos/~A/compare/~A:~A...~A:~A"
-                     base
-                     (repo-author base)
-                     (repo-branch base)
-                     (repo-author fork)
-                     (repo-branch fork))))
-    (mapcar #'get-commit-message (getf data :|commits|))))
-
-
 (defun get-data (path &rest params)
   (let* ((full-path (apply #'format (append (list nil path) params)))
          (url (concatenate 'string "https://api.github.com" full-path)))
@@ -59,7 +64,19 @@ exec ros -Q -- $0 "$@"
         (jonathan:parse decoded)))))
 
 
-(defun get-repo-branches (repo)
+(defun get-fork-commits (base fork)
+  "Returns a list of strings with commit messages"
+  
+  (let* ((data (get-data "/repos/~A/compare/~A:~A...~A:~A"
+                     base
+                     (repo-author base)
+                     (repo-branch base)
+                     (repo-author fork)
+                     (repo-branch fork))))
+    (mapcar #'get-commit-message (getf data :|commits|))))
+
+
+(defun get-repo-branch-names (repo)
   "Takes string like 'svetlyak40wt/foo' and
 returns a list of strings like 'svetlyak40wt/foo@master',
 'svetlyak40wt/foo@some-feature', etc."
@@ -91,7 +108,8 @@ TODO: add pagination"
 
 (defun split-header (text)
   "Separates first line from the rest and
-returns a list of two items"
+returns a list of two items. First line should be separated
+from the rest with at least one empty line."
   (let ((pos (position #\Newline text)))
     (if pos
         (list (strip (subseq text 0 pos))
@@ -99,29 +117,22 @@ returns a list of two items"
         (list (strip text) ""))))
 
 
-(defun output-commit (message)
+(defun print-commit (message)
   "Prints to stdout as a reStructured document's secion.
 First line becomes a header, rest – a body."
-  (destructuring-bind (header body)
-      (split-header message)
-    (format t "~A~%~%"
-            message)))
+  (format t "~A~%~%"
+          (beautify-sentence message)))
 
 
-(defun output-branch-commits (base branch)
+(defun analyze-branch (base branch-full-name)
   "Fetches from a github commit messages of commits
+   Returns a plist like that:
 
-Then each commit message is printed to stdout as a reStructured
-document's secion"
+   (list :name <short-name-of-the-branch>
+         :commits (list <commits))"
   
-  (let ((commits (get-fork-commits base branch))
-        (branch-name (repo-branch branch)))
-    (when commits
-      (format t "~A~%~A~%~%"
-              branch-name
-              (make-underline #\- branch-name))
-      (mapc #'output-commit commits)
-      nil)))
+  (list :name (repo-branch branch-full-name)
+        :commits (get-fork-commits base branch-full-name)))
 
 
 (defun make-underline (char header)
@@ -129,32 +140,91 @@ document's secion"
   (make-string (length header) :initial-element char))
 
 
-(defun analyze-fork (base fork)
-  (let ((branches (get-repo-branches fork)))
-    (format t "~A~%~A~%~%" fork (make-underline #\= fork))
-    (mapc (lambda (branch)
-              (output-branch-commits base branch))
-            branches)
+(defun print-branch (branch)
+  "Fetches from a github commit messages of commits
+
+Then each commit message is printed to stdout as a reStructured
+document's secion"
+  
+  (let ((commits (getf branch :commits))
+        (branch-name (getf branch :name)))
+    (format t "~A~%~A~%~%"
+            branch-name
+            (make-underline #\- branch-name))
+    (mapc #'print-commit commits)
     nil))
 
 
+(defun analyze-fork (base fork-name)
+  "Returns a plist of fork data like
+   '(:branches <branches-data> :name <fork-name>)
+
+   Branches contains only having non merged to \"base\" commits."
+  
+  (let* ((branche-names (get-repo-branch-names fork-name))
+         (all-branches (mapcar (lambda (branch-name)
+                                 (analyze-branch base branch-name))
+                               branche-names))
+         (good-branches (remove-if-not
+                         (lambda (branch)
+                           (getf branch :commits))
+                         all-branches)))
+    (list :name fork-name
+          :branches good-branches)))
+
+
+(defun print-fork (fork)
+  (let ((branches (getf fork :branches))
+        (name (getf fork :name)))
+    (format t "~A~%~A~%~%" name (make-underline #\= name))
+    (mapc (lambda (branch)
+            (print-branch branch))
+          branches)
+    nil))
+
+
+
 (defun analyze-repo (repo)
-  (let ((forks (get-repo-forks repo))
-        (underline (make-underline #\= repo)))
+  "Returns a plist of fork which have unmerged commits:
+   (list :name <repo-name> :forks <forks>"
+  
+  (let* ((fork-names (get-repo-forks repo))
+
+         (all-forks (mapcar (lambda (fork-name)
+                          (analyze-fork repo fork-name))
+                            fork-names))
+         (good-forks (remove-if-not
+                      (lambda (fork)
+                        (getf fork :branches))
+                      all-forks)))
+    (list :name repo
+          :forks good-forks
+          :total-forks-count (length all-forks)
+          :good-forks-count  (length good-forks))))
+
+
+(defun print-repo (repo)
+  "Prints repo data in reStructured text format"
+  (let* ((forks (getf repo :forks))
+         (repo-name (getf repo :name))
+         (underline (make-underline #\= repo-name)))
+    
     (format t "~A~%~A~%~A~%~%"
             underline
-            repo
+            repo-name
             underline)
+    
     (if forks
         (progn (mapc (lambda (fork)
-                   (analyze-fork repo fork))
-                       forks)
+                       (print-fork fork))
+                     forks)
                nil)
         (format t "No forks"))))
 
 
 (defun main (&rest argv)
   (declare (ignorable argv))
-  (analyze-repo (car argv)))
+  (let ((repo-data (analyze-repo (car argv))))
+    (print-repo repo-data)))
 
 ;;; vim: set ft=lisp lisp:

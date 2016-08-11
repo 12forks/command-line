@@ -2,30 +2,15 @@
 marijnh/Postmodern
 ==================
 
-GrimDerp/Postmodern
-===================
-
 radisb/Postmodern
 =================
 
 master
 ------
 
-Update-dao: added updatable fields (= slots that are bound) so that when update-dao is called the unbound slots are not included in the fields to be updated
+Update-dao: added updatable fields (= slots that are bound) so that when update-dao is called the unbound slots are not included in the fields to be updated.
 
-Update table.lisp
-
-Yeyoon/Postmodern
-=================
-
-sabracrolleton/Postmodern
-=========================
-
-TBRSS/Postmodern
-================
-
-alantsev/Postmodern
-===================
+Update table.lisp.
 
 ibawt/Postmodern
 ================
@@ -33,13 +18,7 @@ ibawt/Postmodern
 fix_schema_functions
 --------------------
 
-fix schema changes
-
-dkochmanski/Postmodern
-======================
-
-lokedhs/Postmodern
-==================
+Fix schema changes.
 
 mkrauss/Postmodern
 ==================
@@ -53,9 +32,9 @@ Message, protocol, and public interfaces for closing a parsed / prepared
 statement. Closing a named statement frees resources and allows a
 different statement to be parsed with the same name.
 
-Test for unprepare-query
+Test for unprepare-query.
 
-Documentation for unprepare-query
+Documentation for unprepare-query.
 
 PuercoPop/Postmodern
 ====================
@@ -63,7 +42,7 @@ PuercoPop/Postmodern
 patch-1
 -------
 
-enable-s-sql-syntax properly listed as a function in the docs.
+Enable-s-sql-syntax properly listed as a function in the docs.
 
 patch-2
 -------
@@ -71,15 +50,12 @@ patch-2
 Typo in the documentation of database-connection
 
 
-Representatino -> Representation
+Representatino -> Representation.
 
 with-transaction
 ----------------
 
-Simplify with-transaction implementation
-
-tshatrov/Postmodern
-===================
+Simplify with-transaction implementation.
 
 rick-monster/Postmodern
 =======================
@@ -87,7 +63,7 @@ rick-monster/Postmodern
 master
 ------
 
-add global var to allow mixed case symbols
+Add global var to allow mixed case symbols.
 
 mpemer/Postmodern
 =================
@@ -99,7 +75,7 @@ Added :alter-column operation
 
 Added :alter-table :alter-column operation, which will generate SQL of the type
 
-    ALTER TABLE some_table ALTER COLUMN new_column_spec
+    ALTER TABLE some_table ALTER COLUMN new_column_spec.
 
 ebdreger/Postmodern
 ===================
@@ -124,7 +100,7 @@ When computing the column names to use for insert/update methods on dao instance
 
 When building up s-sql forms in the dao readers/writers make sure to use :raw for the column names (which we have as strings and not symbols)
 
-Make sure to compute the right sql column name for the :returning columns in insert-dao
+Make sure to compute the right sql column name for the :returning columns in insert-dao.
 
 Tests for :col-name DAO slot argument.
 
@@ -132,13 +108,13 @@ When computing the column names to use for insert/update methods on dao instance
 
 When building up s-sql forms in the dao readers/writers make sure to use :raw for the column names (which we have as strings and not symbols)
 
-Make sure to compute the right sql column name for the :returning columns in insert-dao
+Make sure to compute the right sql column name for the :returning columns in insert-dao.
 
 Tests for :col-name DAO slot argument.
 
 Add failing test showing database error raised when attempting to write empty arrays.
 
-Fix empty array problem by using Postgres's array literal syntax for empty arrays
+Fix empty array problem by using Postgres's array literal syntax for empty arrays.
 
 Removed all whitespace changes on branch vs master (no functional changes)
 
@@ -150,7 +126,7 @@ Use make-symbol instead of (list :raw ...) to inject a column name into an s-sql
 Merge remote-tracking branch 'upstream/master' into wco-master
 
 Conflicts:
-	postmodern/table.lisp - Just took version from upstream
+	postmodern/table.lisp - Just took version from upstream.
 
 Added connection-backend-info to the cl-postgres connection.
 
@@ -160,9 +136,9 @@ lisp side if it needs to be used later on (we collect the information at
 connection time so that it's available even if the connection is broken
 and can't run the query itself).
 
-Merge remote-tracking branch 'origin/col_name_dao' into wco-master
+Merge remote-tracking branch 'origin/col_name_dao' into wco-master.
 
-Export commit-logical-transaction and abort-logical-transaction
+Export commit-logical-transaction and abort-logical-transaction.
 
 Make the functions for committing and aborting transactions (and savepoints) generic functions.
 
@@ -177,7 +153,7 @@ When computing the column names to use for insert/update methods on dao instance
 
 When building up s-sql forms in the dao readers/writers make sure to use :raw for the column names (which we have as strings and not symbols)
 
-Make sure to compute the right sql column name for the :returning columns in insert-dao
+Make sure to compute the right sql column name for the :returning columns in insert-dao.
 
 Tests for :col-name DAO slot argument.
 
@@ -185,13 +161,13 @@ When computing the column names to use for insert/update methods on dao instance
 
 When building up s-sql forms in the dao readers/writers make sure to use :raw for the column names (which we have as strings and not symbols)
 
-Make sure to compute the right sql column name for the :returning columns in insert-dao
+Make sure to compute the right sql column name for the :returning columns in insert-dao.
 
 Tests for :col-name DAO slot argument.
 
 Add failing test showing database error raised when attempting to write empty arrays.
 
-Fix empty array problem by using Postgres's array literal syntax for empty arrays
+Fix empty array problem by using Postgres's array literal syntax for empty arrays.
 
 Removed all whitespace changes on branch vs master (no functional changes)
 
@@ -203,7 +179,7 @@ Use make-symbol instead of (list :raw ...) to inject a column name into an s-sql
 Merge remote-tracking branch 'upstream/master' into wco-master
 
 Conflicts:
-	postmodern/table.lisp - Just took version from upstream
+	postmodern/table.lisp - Just took version from upstream.
 
 Added connection-backend-info to the cl-postgres connection.
 
@@ -213,9 +189,9 @@ lisp side if it needs to be used later on (we collect the information at
 connection time so that it's available even if the connection is broken
 and can't run the query itself).
 
-Merge remote-tracking branch 'origin/col_name_dao' into wco-master
+Merge remote-tracking branch 'origin/col_name_dao' into wco-master.
 
-Export commit-logical-transaction and abort-logical-transaction
+Export commit-logical-transaction and abort-logical-transaction.
 
 nested-joins
 ------------
@@ -224,12 +200,9 @@ Allow nested joins.
 
 Add documentation for nested and chained join syntax.
 
-Handle table aliases correctly
+Handle table aliases correctly.
 
 More concise.
-
-thodg/Postmodern
-================
 
 segv/Postmodern
 ===============
@@ -252,7 +225,7 @@ When computing the column names to use for insert/update methods on dao instance
 
 When building up s-sql forms in the dao readers/writers make sure to use :raw for the column names (which we have as strings and not symbols)
 
-Make sure to compute the right sql column name for the :returning columns in insert-dao
+Make sure to compute the right sql column name for the :returning columns in insert-dao.
 
 Tests for :col-name DAO slot argument.
 
@@ -287,73 +260,73 @@ empty-arrays
 
 Add failing test showing database error raised when attempting to write empty arrays.
 
-Fix empty array problem by using Postgres's array literal syntax for empty arrays
+Fix empty array problem by using Postgres's array literal syntax for empty arrays.
 
 master
 ------
 
-do-query-dao working
+Do-query-dao working.
 
-do-select-dao working
+Do-select-dao working.
 
-export do-select-dao
+Export do-select-dao.
 
-documentation for do-query-dao and do-select-dao
+Documentation for do-query-dao and do-select-dao.
 
-add failing tests for logical transactions
+Add failing tests for logical transactions.
 
-implement with-logical-transaction, ensure-transaction, commit-hooks, and abort-hooks
+Implement with-logical-transaction, ensure-transaction, commit-hooks, and abort-hooks.
 
-documentation
+Documentation.
 
-Merge branch 'master' of https://github.com/enaeher/Postmodern
+Merge branch 'master' of https://github.com/enaeher/Postmodern.
 
-whitespace
+Whitespace.
 
-correct use of eos:is in several tests
+Correct use of eos:is in several tests.
 
-change with-savepoint to have same invocation as with-transaction, including making the name optional
+Change with-savepoint to have same invocation as with-transaction, including making the name optional.
 
-wrap commit and abort hooks in unwind-protect
+Wrap commit and abort hooks in unwind-protect.
 
-whitespace
+Whitespace.
 
-correct use of eos:is in several tests
+Correct use of eos:is in several tests.
 
-change with-savepoint to have same invocation as with-transaction, including making the name optional
+Change with-savepoint to have same invocation as with-transaction, including making the name optional.
 
-wrap commit and abort hooks in unwind-protect
+Wrap commit and abort hooks in unwind-protect.
 
-fix bug in *transaction-level* logic; add *current-logical-transaction*
+Fix bug in *transaction-level* logic; add *current-logical-transaction*
 
-fix unwind-protect calls
+Fix unwind-protect calls.
 
-merge transactions branch
+Merge transactions branch.
 
-merge latest upstream
+Merge latest upstream.
 
-Merge latest upstream
+Merge latest upstream.
 
 transactions
 ------------
 
-add failing tests for logical transactions
+Add failing tests for logical transactions.
 
-implement with-logical-transaction, ensure-transaction, commit-hooks, and abort-hooks
+Implement with-logical-transaction, ensure-transaction, commit-hooks, and abort-hooks.
 
-documentation
+Documentation.
 
-whitespace
+Whitespace.
 
-correct use of eos:is in several tests
+Correct use of eos:is in several tests.
 
-change with-savepoint to have same invocation as with-transaction, including making the name optional
+Change with-savepoint to have same invocation as with-transaction, including making the name optional.
 
-wrap commit and abort hooks in unwind-protect
+Wrap commit and abort hooks in unwind-protect.
 
-fix bug in *transaction-level* logic; add *current-logical-transaction*
+Fix bug in *transaction-level* logic; add *current-logical-transaction*
 
-fix unwind-protect calls
+Fix unwind-protect calls.
 
 Allow more than one form in the body of pomo:ensure-transaction.
 
@@ -370,7 +343,7 @@ function call-with-logical-transaction.
 
 Merge pull request #1 from segv/transactions
 
-bug fix in ensure-transactions; refactor with-logical-transactions
+bug fix in ensure-transactions; refactor with-logical-transactions.
 
 Fix call to with-savepoint in save-dao/transaction to work with new api.
 
@@ -382,7 +355,7 @@ Revert "Refactor with-logical-transaction into a macro which simply expands into
 
 This reverts commit 80d3129aafc2f087d2d1f128b48ba43b41966b81.
 
-go back to old with-savepoint arg list
+Go back to old with-savepoint arg list.
 
 window-partition-by
 -------------------
@@ -433,9 +406,6 @@ Be more clear around ratio serialization.
 
 Do not ignore silently any precision loss by default.
 
-pnathan/Postmodern
-==================
-
 dimitri/Postmodern
 ==================
 
@@ -447,7 +417,7 @@ Rework bulk-copy API to allow several COPY within the same transaction.
 Merge remote-tracking branch 'marijnh/master'
 
 Conflicts:
-	cl-postgres/bulk-copy.lisp
+	cl-postgres/bulk-copy.lisp.
 
 open-db-writer
 --------------
@@ -462,7 +432,7 @@ Rework bulk-copy API to allow several COPY within the same transaction.
 Merge remote-tracking branch 'marijnh/master'
 
 Conflicts:
-	cl-postgres/bulk-copy.lisp
+	cl-postgres/bulk-copy.lisp.
 
 Improve error reporting, providing HINT, DETAIL and CONTEXT as separate entries.
 
@@ -472,12 +442,6 @@ http://www.postgresql.org/docs/current/static/protocol-error-fields.html.
 This patch improves the database-error condition to expose important fields
 separately and fixes get-error so that news fields are properly filled when
 an error occurs.
-
-bsmr-common-lisp/Postmodern
-===========================
-
-cadre-io/Postmodern
-===================
 
 zickzackv/Postmodern
 ====================
@@ -494,32 +458,32 @@ characters with underscore (_).
 This also means that you have to create namespaces with funny characters
 from within postmodern in order to access them correctly.
 
-Fix: quoting namespace identifiers w/ to-sql-name
+Fix: quoting namespace identifiers w/ to-sql-name.
 
 namespaces
 ----------
 
-initial namespace support
+Initial namespace support.
 
-realy set the search path! (and do not try to change name)
+Realy set the search path! (and do not try to change name)
 
-let table-exists-p honor namespaces (like list-tables)
+Let table-exists-p honor namespaces (like list-tables)
 
-adding tests for with-schema.
+Adding tests for with-schema.
 
 Testing the options for with-schema like :drop-after and :strict are
 still missing.
 
-removing alexandrina dependency
+Removing alexandrina dependency.
 
-Adding documentation for schemata
+Adding documentation for schemata.
 
-Changed with-schema to use a helper method do-with-schema
+Changed with-schema to use a helper method do-with-schema.
 
 schema-name-escaping
 --------------------
 
-fixing double escape and cascading deletion
+Fixing double escape and cascading deletion.
 
 waywardmonkeys/Postmodern
 =========================
@@ -535,7 +499,7 @@ hanshuebner/Postmodern
 master
 ------
 
-make table-description return columns in table order
+Make table-description return columns in table order.
 
 fvides/Postmodern
 =================
@@ -543,15 +507,12 @@ fvides/Postmodern
 add-@@-operator
 ---------------
 
-Added FTS match :@@ operator
+Added FTS match :@@ operator.
 
 update-add-from-clause
 ----------------------
 
-Extended the :update operation with a :from clause
-
-helaveesa/Postmodern
-====================
+Extended the :update operation with a :from clause.
 
 MakarovAlexey/Postmodern
 ========================
@@ -559,23 +520,23 @@ MakarovAlexey/Postmodern
 master
 ------
 
-initial code for large objects
+Initial code for large objects.
 
-Initial code for large objects
+Initial code for large objects.
 
-some implementation
+Some implementation.
 
-some implementation
+Some implementation.
 
-Implementation
+Implementation.
 
-implemented input streams
+Implemented input streams.
 
-Implemented output streams
+Implemented output streams.
 
-Fixed compilation
+Fixed compilation.
 
-Working on tests
+Working on tests.
 
-Implemented intup and output streams
+Implemented intup and output streams.
 
