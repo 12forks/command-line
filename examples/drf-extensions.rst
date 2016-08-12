@@ -2,39 +2,8 @@
 chibisov/drf-extensions
 =======================
 
-christinegraham/drf-extensions
-==============================
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
-
-revert-146-master
------------------
-
-Revert "Fixed PaginationKeyBit"
-
-Qlzsxxryacttao/drf-extensions
-=============================
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
-
-revert-146-master
------------------
-
-Revert "Fixed PaginationKeyBit"
-
 raphendyr/drf-extensions
 ========================
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
 
 reimplement_nested_routes_v1
 ----------------------------
@@ -85,11 +54,6 @@ You can also use register using with-statement.
 
 ResourceUriField is identical to HyperlinkedIdentityField.
 
-revert-146-master
------------------
-
-Revert "Fixed PaginationKeyBit"
-
 tevinjoseph/drf-extensions
 ==========================
 
@@ -111,11 +75,6 @@ Simplified readme.
 Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
 
 master
 ------
@@ -158,11 +117,6 @@ Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
 
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
-
 AdrianRibao/drf-extensions
 ==========================
 
@@ -185,11 +139,6 @@ Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
 
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
-
 vovanbo/drf-extensions
 ======================
 
@@ -211,11 +160,6 @@ Simplified readme.
 Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
 
 patch-1
 -------
@@ -246,11 +190,6 @@ Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
 
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
-
 shinichi81/drf-extensions
 =========================
 
@@ -272,11 +211,6 @@ Simplified readme.
 Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
 
 auvipy/drf-extensions
 =====================
@@ -300,11 +234,6 @@ Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
 
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
-
 japotter4/drf-extensions
 ========================
 
@@ -326,11 +255,6 @@ Simplified readme.
 Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
 
 master
 ------
@@ -358,11 +282,6 @@ Simplified readme.
 Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
 
 patch-1
 -------
@@ -399,11 +318,6 @@ Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
 
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
-
 nrabe/drf-extensions
 ====================
 
@@ -425,11 +339,6 @@ Simplified readme.
 Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
 
 master
 ------
@@ -457,11 +366,6 @@ Simplified readme.
 Implemented and tested queryset methods filtering with django_filter.
 
 Stop queryset_method evaluation for requests without arguments or filtering.
-
-gh-pages
---------
-
-Respect parent lookup regex value. Fixes #87.
 
 pratyushmittal/drf-extensions
 =============================

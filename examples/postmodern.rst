@@ -123,11 +123,6 @@ to read, review and merge.
 
 Use make-symbol instead of (list :raw ...) to inject a column name into an s-sql query.
 
-Merge remote-tracking branch 'upstream/master' into wco-master
-
-Conflicts:
-	postmodern/table.lisp - Just took version from upstream.
-
 Added connection-backend-info to the cl-postgres connection.
 
 Whenever we create a new connection as part of the initialization we
@@ -135,8 +130,6 @@ send a query and get the backend's user, pid and database and store this
 lisp side if it needs to be used later on (we collect the information at
 connection time so that it's available even if the connection is broken
 and can't run the query itself).
-
-Merge remote-tracking branch 'origin/col_name_dao' into wco-master.
 
 Export commit-logical-transaction and abort-logical-transaction.
 
@@ -176,11 +169,6 @@ to read, review and merge.
 
 Use make-symbol instead of (list :raw ...) to inject a column name into an s-sql query.
 
-Merge remote-tracking branch 'upstream/master' into wco-master
-
-Conflicts:
-	postmodern/table.lisp - Just took version from upstream.
-
 Added connection-backend-info to the cl-postgres connection.
 
 Whenever we create a new connection as part of the initialization we
@@ -188,8 +176,6 @@ send a query and get the backend's user, pid and database and store this
 lisp side if it needs to be used later on (we collect the information at
 connection time so that it's available even if the connection is broken
 and can't run the query itself).
-
-Merge remote-tracking branch 'origin/col_name_dao' into wco-master.
 
 Export commit-logical-transaction and abort-logical-transaction.
 
@@ -279,8 +265,6 @@ Implement with-logical-transaction, ensure-transaction, commit-hooks, and abort-
 
 Documentation.
 
-Merge branch 'master' of https://github.com/enaeher/Postmodern.
-
 Whitespace.
 
 Correct use of eos:is in several tests.
@@ -300,12 +284,6 @@ Wrap commit and abort hooks in unwind-protect.
 Fix bug in *transaction-level* logic; add *current-logical-transaction*
 
 Fix unwind-protect calls.
-
-Merge transactions branch.
-
-Merge latest upstream.
-
-Merge latest upstream.
 
 transactions
 ------------
@@ -341,15 +319,7 @@ This avoids duplicating the body forms in the macroexpansion output and
 allow one to trace 'calls' to with-logical-transaction by tracing the
 function call-with-logical-transaction.
 
-Merge pull request #1 from segv/transactions
-
-bug fix in ensure-transactions; refactor with-logical-transactions.
-
 Fix call to with-savepoint in save-dao/transaction to work with new api.
-
-Merge pull request #2 from segv/transactions
-
-Fix call to with-savepoint in save-dao/transaction to use with-savepoint's new api (just wrap first argument in a list)
 
 Revert "Refactor with-logical-transaction into a macro which simply expands into a call to call-with-logical-transaction"
 
@@ -414,11 +384,6 @@ master
 
 Rework bulk-copy API to allow several COPY within the same transaction.
 
-Merge remote-tracking branch 'marijnh/master'
-
-Conflicts:
-	cl-postgres/bulk-copy.lisp.
-
 open-db-writer
 --------------
 
@@ -428,11 +393,6 @@ protocol-error-fields
 ---------------------
 
 Rework bulk-copy API to allow several COPY within the same transaction.
-
-Merge remote-tracking branch 'marijnh/master'
-
-Conflicts:
-	cl-postgres/bulk-copy.lisp.
 
 Improve error reporting, providing HINT, DETAIL and CONTEXT as separate entries.
 
