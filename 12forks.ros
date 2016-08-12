@@ -7,8 +7,31 @@ exec ros -Q -- $0 "$@"
   (:use :cl))
 (in-package :12forks.cli)
 
+
 (defvar *test-repo* "marijnh/Postmodern")
 (defvar *ignore-merges* t)
+
+(defvar *config* nil)
+
+(defconstant +config-help-messages+
+  '(:token "Please set :token in .12forks file. It is required. It can be OAuth token or created at https://github.com/settings/tokens/new"))
+
+
+(defun read-config (&optional (filename "./.12forks"))
+  (with-open-file (f filename)
+    (setf *config* (read f))
+    (format nil "Config: ~A~%" *config*)))
+
+
+(defun get-config (name)
+  (let ((value (getf *config* name)))
+    (if value
+        value
+        (error (getf +config-help-messages+
+                     name
+                     (format nil "Config value :~A is required.~%"
+                             (string-downcase (symbol-name name))))))))
+
 
 ;; suppress output from loading libraries
 (with-output-to-string (*standard-output*)
@@ -74,15 +97,23 @@ exec ros -Q -- $0 "$@"
 
 (defun get-data (path &rest params)
   (let* ((full-path (apply #'format (append (list nil path) params)))
-         (url (concatenate 'string "https://api.github.com" full-path)))
+         (url (concatenate 'string "https://api.github.com" full-path))
+         (headers `(("Authorization"
+                     .
+                     ,(concatenate 'string
+                                   "token "
+                                   (get-config :token))))))
     
     (multiple-value-bind (content code)
-        (drakma:http-request url
-                             :force-binary t
-                             :basic-authorization '("svetlyak40wt" "n29YR1DG1T"))
+        (drakma:http-request
+         url
+         :force-binary t
+         :connection-timeout 1
+         :additional-headers headers)
       
       (let ((decoded (babel:octets-to-string content :encoding :utf-8)))
-        (assert (= code 200))
+        (if (not (= code 200))
+            (error (format nil "GitHub returned ~A status code." code)))
         (jonathan:parse decoded)))))
 
 
@@ -215,13 +246,14 @@ document's secion"
   (info "Analyzing fork ~A" fork-name)
   (let* ((master-branch (find-branch-by-name base-branches "master"))
          (branche-names (get-repo-branch-names fork-name))
-         (_ (info "  It has ~A branches" branche-names))
-         (all-branches (mapcar (lambda (branch-full-name)
-                                 (analyze-branch
-                                  (or (find-branch-by-name base-branches (repo-branch branch-full-name))
-                                      master-branch)
-                                  branch-full-name))
-                               branche-names))
+         (all-branches (progn
+                           (info "  It has ~A branches" branche-names)
+                          (mapcar (lambda (branch-full-name)
+                                    (analyze-branch
+                                     (or (find-branch-by-name base-branches (repo-branch branch-full-name))
+                                         master-branch)
+                                     branch-full-name))
+                                  branche-names)))
          (good-branches (remove-if-not
                          (lambda (branch)
                            (getf branch :commits))
@@ -281,6 +313,9 @@ document's secion"
 
 (defun main (&rest argv)
   (declare (ignorable argv))
+  
+  (read-config)
+  
   (let ((repo-data (analyze-repo (car argv))))
     (print-repo repo-data)))
 

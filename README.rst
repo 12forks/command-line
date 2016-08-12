@@ -38,7 +38,6 @@ or bitcoins if you wish to support it.
 TODO
 ====
 
-* Use OAuth over basic auth.
 * Optimize processing speed.
 * Ability to ignore some branches, like ``gh-pages`` in drf-extensions.
   Probably, this will be solved with previous task.
