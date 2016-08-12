@@ -3,11 +3,12 @@
 #| <Put a one-line description here>
 exec ros -Q -- $0 "$@"
 |#
-(defpackage :ros.script.fork-search.3679653190
+(defpackage :12forks.cli
   (:use :cl))
-(in-package :ros.script.fork-search.3679653190)
+(in-package :12forks.cli)
 
 (defvar *test-repo* "marijnh/Postmodern")
+(defvar *ignore-merges* t)
 
 ;; suppress output from loading libraries
 (with-output-to-string (*standard-output*)
@@ -35,6 +36,12 @@ exec ros -Q -- $0 "$@"
         (concatenate 'string capitalized ".")
         capitalized)))
 
+(defun merge-commit-p (commit)
+  "If messages is looks like a merge commit, then.
+   We consider merge commit if it has more than one parent"
+  (> (length (getf commit :|parents|))
+     1))
+
 
 (defun repo-branch (repo)
   "For 'svetlyak40wt/foo@bar' string returns 'bar'.
@@ -56,7 +63,8 @@ exec ros -Q -- $0 "$@"
          (url (concatenate 'string "https://api.github.com" full-path)))
     
     (multiple-value-bind (content code)
-        (drakma:http-request url :force-binary t
+        (drakma:http-request url
+                             :force-binary t
                              :basic-authorization '("svetlyak40wt" "n29YR1DG1T"))
       
       (let ((decoded (babel:octets-to-string content :encoding :utf-8)))
@@ -64,16 +72,21 @@ exec ros -Q -- $0 "$@"
         (jonathan:parse decoded)))))
 
 
-(defun get-fork-commits (base fork)
+(defun get-nonmerged-commits (base fork)
   "Returns a list of strings with commit messages"
   
   (let* ((data (get-data "/repos/~A/compare/~A:~A...~A:~A"
-                     base
-                     (repo-author base)
-                     (repo-branch base)
-                     (repo-author fork)
-                     (repo-branch fork))))
-    (mapcar #'get-commit-message (getf data :|commits|))))
+                         base
+                         (repo-author base)
+                         (repo-branch base)
+                         (repo-author fork)
+                         (repo-branch fork)))
+         (commits (getf data :|commits|))
+         (filtered-commits (if *ignore-merges*
+                               (remove-if #'merge-commit-p commits)
+                               commits))
+         (messages (mapcar #'get-commit-message filtered-commits)))
+    messages))
 
 
 (defun get-repo-branch-names (repo)
@@ -132,7 +145,7 @@ First line becomes a header, rest – a body."
          :commits (list <commits))"
   
   (list :name (repo-branch branch-full-name)
-        :commits (get-fork-commits base branch-full-name)))
+        :commits (get-nonmerged-commits base branch-full-name)))
 
 
 (defun make-underline (char header)
