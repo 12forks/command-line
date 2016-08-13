@@ -33,7 +33,7 @@ Donations
 =========
 
 This service was started as opensource and nonprofit. Please, donate your time
-or bitcoins if you wish to support it.
+if you wish to support it.
 
 TODO
 ====
