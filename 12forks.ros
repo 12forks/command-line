@@ -33,12 +33,18 @@ exec ros -Q -- $0 "$@"
                              (string-downcase (symbol-name name))))))))
 
 
-;; suppress output from loading libraries
-(with-output-to-string (*standard-output*)
-  (ql:quickload :drakma)
-  (ql:quickload :babel)
-  (ql:quickload :jonathan))
+;; load libraries suppressing output from QuickLisp
+(ql:quickload '(:drakma :babel :jonathan)
+              :silent t)
 
+;; suppress requiring for CC environment variable
+;; (with-output-to-string (*error-output*)
+;;   (ql:quickload '(:net.didierverna.clon)
+;;                 :silent t))
+(ql:quickload '(:net.didierverna.clon)
+                :silent t)
+
+(use-package :net.didierverna.clon)
 
 (defun info (message &rest args)
   (let ((formatted-message (apply #'format (append (list nil message) args))))
@@ -311,12 +317,33 @@ document's secion"
         (format t "No forks"))))
 
 
-(defun main (&rest argv)
-  (declare (ignorable argv))
+(defsynopsis (:postfix "REPOSITORY")
+  (text :contents "This utility builds a report about all non-merged commits for any github repository. Just give some repository name like \"antirez/redis\" as an argument and pipe stdout to some file.
+")
   
+  (flag :short-name "h" :long-name "help"
+        :description "Print this help and exit.")
+  (flag :short-name "v" :long-name "version"
+        :description "Print version number and exit."))
+
+
+(defun main (&rest args)
+  (make-context :cmdline (cons "12forks" args))
+  
+  (when (getopt :short-name "v")
+    (prin1 "12forks cli, version: 0.1.0")
+    (exit))
+
+  (when (getopt :long-name "help")
+    (help)
+    (exit))
+
   (read-config)
-  
-  (let ((repo-data (analyze-repo (car argv))))
-    (print-repo repo-data)))
+
+  (let ((repo (first (remainder))))
+    (if repo
+        (progn (let ((repo-data (analyze-repo repo)))
+                 (print-repo repo-data)))
+        (help))))
 
 ;;; vim: set ft=lisp lisp:

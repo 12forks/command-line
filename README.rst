@@ -39,10 +39,8 @@ TODO
 ====
 
 * Optimize processing speed.
-* Ability to ignore some branches, like ``gh-pages`` in drf-extensions.
-  Probably, this will be solved with previous task.
+* Add logging and verbose output option.
 * Make analysis if some fork is popular and another forks are made from it
   instead of the base.
-* Add logging and verbose output option.
 * Handle networking error like "USOCKET:NS-HOST-NOT-FOUND-ERROR" gracefully.
 * Handle rate limit from GitHub somehow.
