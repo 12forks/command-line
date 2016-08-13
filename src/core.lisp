@@ -1,98 +1,6 @@
-#!/bin/sh
-#|-*- mode:lisp -*-|#
-#| <Put a one-line description here>
-exec ros -Q -- $0 "$@"
-|#
-(defpackage :12forks.cli
-  (:use :cl))
-(in-package :12forks.cli)
+(in-package :12forks)
 
-
-(defvar *test-repo* "marijnh/Postmodern")
 (defvar *ignore-merges* t)
-
-(defvar *config* nil)
-
-(defconstant +config-help-messages+
-  '(:token "Please set :token in .12forks file. It is required. It can be OAuth token or created at https://github.com/settings/tokens/new"))
-
-
-(defun read-config (&optional (filename "./.12forks"))
-  (with-open-file (f filename)
-    (setf *config* (read f))
-    (format nil "Config: ~A~%" *config*)))
-
-
-(defun get-config (name)
-  (let ((value (getf *config* name)))
-    (if value
-        value
-        (error (getf +config-help-messages+
-                     name
-                     (format nil "Config value :~A is required.~%"
-                             (string-downcase (symbol-name name))))))))
-
-
-;; load libraries suppressing output from QuickLisp
-(ql:quickload '(:drakma :babel :jonathan)
-              :silent t)
-
-;; suppress requiring for CC environment variable
-;; (with-output-to-string (*error-output*)
-;;   (ql:quickload '(:net.didierverna.clon)
-;;                 :silent t))
-(ql:quickload '(:net.didierverna.clon)
-                :silent t)
-
-(use-package :net.didierverna.clon)
-
-(defun info (message &rest args)
-  (let ((formatted-message (apply #'format (append (list nil message) args))))
-    (format *error-output* "~A~%" formatted-message)))
-
-
-(defun repo-name (repo)
-  "Strips branch name from full repo name.
-   For text like \"some/repo@master\" returns
-   \"some/repo\"."
-  (subseq repo
-          0
-          (position #\@ repo)))
-
-
-(defun repo-author (repo)
-  "For 'svetlyak40wt/foo@bar' string returns 'svetlyak40wt'"
-  (subseq repo 0 (position #\/ repo)))
-
-
-(defun last-character (string)
-  (aref string (1- (length string))))
-
-
-(defun beautify-sentence (sentence)
-  "Normalizes piece of text by capitalizing first character and adding dot at the end if needed."
-  (let* ((length (length sentence))
-         (last-char (last-character sentence))
-         (capitalized (string-capitalize sentence :end (min 1 length))))
-    (if (alphanumericp last-char)
-        ;; add a dot
-        (concatenate 'string capitalized ".")
-        capitalized)))
-
-(defun merge-commit-p (commit)
-  "If messages is looks like a merge commit, then.
-   We consider merge commit if it has more than one parent"
-  (> (length (getf commit :|parents|))
-     1))
-
-
-(defun repo-branch (repo)
-  "For 'svetlyak40wt/foo@bar' string returns 'bar'.
-   If there is no @ suffix, assume 'master' is default branch."
-  (let ((position (position #\@ repo)))
-    (if position
-        (subseq repo (1+ position))
-        "master")))
 
 
 (defun get-commit-message (commit)
@@ -167,21 +75,6 @@ TODO: add pagination"
             data)))
 
 
-(defun strip (text)
-  "Removes spaces and newlines from both ends of the string"
-  (string-trim '(#\Space #\Newline) text))
-
-
-(defun split-header (text)
-  "Separates first line from the rest and
-returns a list of two items. First line should be separated
-from the rest with at least one empty line."
-  (let ((pos (position #\Newline text)))
-    (if pos
-        (list (strip (subseq text 0 pos))
-              (strip (subseq text (1+ pos))))
-        (list (strip text) ""))))
-
 
 (defun print-commit (message)
   "Prints to stdout as a reStructured document's secion.
@@ -201,11 +94,6 @@ First line becomes a header, rest – a body."
         :commits (get-nonmerged-commits base branch-full-name)))
 
 
-(defun make-underline (char header)
-  "Makes from given char a string of same length as text 'header'"
-  (make-string (length header) :initial-element char))
-
-
 (defun print-branch (branch)
   "Fetches from a github commit messages of commits
 
@@ -219,24 +107,6 @@ document's secion"
             (make-underline #\- branch-name))
     (mapc #'print-commit commits)
     nil))
-
-
-(defun find-branch-by-name (branches name)
-  "Searches in the list of full names like:
-
-      '(\"12forks/core@master\"
-        \"12forks/core@gh-pages\")
-
-   branch by it's short name.
-
-   For example, if name i \"gh-pages\", then
-   function will return \"12forks/core@gh-pages\".
-
-   If nothing found then nil is returned."
-  (find-if (lambda (item)
-             (equal (repo-branch item)
-                name))
-           branches))
 
 
 (defun analyze-fork (base-branches fork-name)
@@ -315,35 +185,3 @@ document's secion"
                      forks)
                nil)
         (format t "No forks"))))
-
-
-(defsynopsis (:postfix "REPOSITORY")
-  (text :contents "This utility builds a report about all non-merged commits for any github repository. Just give some repository name like \"antirez/redis\" as an argument and pipe stdout to some file.
-")
-  
-  (flag :short-name "h" :long-name "help"
-        :description "Print this help and exit.")
-  (flag :short-name "v" :long-name "version"
-        :description "Print version number and exit."))
-
-
-(defun main (&rest args)
-  (make-context :cmdline (cons "12forks" args))
-  
-  (when (getopt :short-name "v")
-    (prin1 "12forks cli, version: 0.1.0")
-    (exit))
-
-  (when (getopt :long-name "help")
-    (help)
-    (exit))
-
-  (read-config)
-
-  (let ((repo (first (remainder))))
-    (if repo
-        (progn (let ((repo-data (analyze-repo repo)))
-                 (print-repo repo-data)))
-        (help))))
-
-;;; vim: set ft=lisp lisp:

@@ -1,0 +1,54 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#| <Put a one-line description here>
+exec ros -Q -- $0 "$@"
+|#
+
+(push (probe-file ".") asdf:*central-registry*)
+(ql:quickload "12forks")
+
+
+(defpackage :12forks.cli
+  (:use :cl)
+  (:import-from :net.didierverna.clon
+                :defsynopsis
+                :make-context
+                :getopt
+                :remainder
+                :help
+                :exit))
+
+
+(in-package :12forks.cli)
+
+
+(defsynopsis (:postfix "REPOSITORY")
+  (text :contents "This utility builds a report about all non-merged commits for any github repository. Just give some repository name like \"antirez/redis\" as an argument and pipe stdout to some file.
+")
+  
+  (flag :short-name "h" :long-name "help"
+        :description "Print this help and exit.")
+  (flag :short-name "v" :long-name "version"
+        :description "Print version number and exit."))
+
+
+(defun main (&rest args)
+  (make-context :cmdline (cons "12forks" args))
+  
+  (when (getopt :short-name "v")
+    (prin1 "12forks cli, version: 0.1.0")
+    (exit))
+
+  (when (getopt :long-name "help")
+    (help)
+    (exit))
+
+  (12forks::read-config)
+
+  (let ((repo (first (remainder))))
+    (if repo
+        (progn (let ((repo-data (12forks::analyze-repo repo)))
+                 (12forks::print-repo repo-data)))
+        (help))))
+
+;;; vim: set ft=lisp lisp:
