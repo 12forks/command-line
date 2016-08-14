@@ -9,6 +9,7 @@
                 :components ((:module src
                               :serial t
                               :components ((:file "packages")
+                                           (:file "conditions")
                                            (:file "utils")
                                            (:file "config")
                                            (:file "logging")

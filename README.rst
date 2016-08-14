@@ -16,6 +16,19 @@ useful.
 Probably, a webservice could be created to automate this precedure.
 
 
+Usage
+=====
+
+Download a binary for your platform from
+`releases page <https://github.com/12forks/command-line/releases>`_.
+
+Generate a personal access token at `GitHub's settings page <https://github.com/settings/tokens/new>`_.
+
+Run it in a shell::
+
+  ./12forks --token <your-token> some-github/repository > report.rst
+
+
 Ideas for webservice
 ====================
 
@@ -34,6 +47,20 @@ Donations
 
 This service was started as opensource and nonprofit. Please, donate your time
 if you wish to support it.
+
+Development
+===========
+
+How to build binaries for linux
+-------------------------------
+
+First, you need t build a docker container with `roswell <>`_::
+
+  docker build -t 12forks-roswell .
+
+Then, run::
+
+  docker run --rm -ti -v `pwd`:/app 12forks-roswell bash -c 'cd /app && ros build roswell/12forks.ros'
 
 TODO
 ====

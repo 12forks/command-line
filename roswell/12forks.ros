@@ -25,30 +25,44 @@ exec ros -Q -- $0 "$@"
 (defsynopsis (:postfix "REPOSITORY")
   (text :contents "This utility builds a report about all non-merged commits for any github repository. Just give some repository name like \"antirez/redis\" as an argument and pipe stdout to some file.
 ")
-  
   (flag :short-name "h" :long-name "help"
         :description "Print this help and exit.")
   (flag :short-name "v" :long-name "version"
-        :description "Print version number and exit."))
+        :description "Print version number and exit.")
+  (flag :long-name "debug"
+        :description "Show traceback instead of short message.")
+
+  (stropt :short-name "t" :long-name "token"
+          :env-var "TOKEN"
+          :description "GitHub personal access token."))
+
+
+(defun do-the-job ()
+  (let ((repo (first (remainder))))
+    (if repo
+        (progn (let ((repo-data (12forks::analyze-repo repo)))
+                 (12forks::print-repo repo-data)))
+        (help))))
 
 
 (defun main (&rest args)
   (make-context :cmdline (cons "12forks" args))
   
   (when (getopt :short-name "v")
-    (prin1 "12forks cli, version: 0.1.0")
+    (format t "12forks cli, version: 0.1.0~%")
     (exit))
 
   (when (getopt :long-name "help")
     (help)
     (exit))
 
-  (12forks::read-config)
+  (setf (getf 12forks::*config* :token)
+        (getopt :long-name "token"))
 
-  (let ((repo (first (remainder))))
-    (if repo
-        (progn (let ((repo-data (12forks::analyze-repo repo)))
-                 (12forks::print-repo repo-data)))
-        (help))))
+  (if (getopt :long-name "debug")
+      (do-the-job)
+      ;; otherwise, handle any error and show only it's description
+      (handler-case (do-the-job)
+        (error (cond) (format t "~A~%" cond)))))
 
 ;;; vim: set ft=lisp lisp:

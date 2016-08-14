@@ -1,5 +1,12 @@
 #!/bin/bash
 
+VERSION=0.1.0
+
 export CC=gcc
 
+rm -f roswell/12forks
 ros build roswell/12forks.ros
+mv roswell/12forks roswell/12forks-osx-$VERSION
+
+docker run --rm -ti -v `pwd`:/app 12forks-roswell bash -c 'cd /app && ros build roswell/12forks.ros'
+mv roswell/12forks roswell/12forks-debian-ubuntu-$VERSION

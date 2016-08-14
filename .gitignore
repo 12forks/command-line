@@ -1,2 +1,6 @@
 /.12forks
 /roswell/12forks
+/.env
+/roswell/12forks-debian-ubuntu*
+/roswell/12forks-osx*
+/dev.rst
