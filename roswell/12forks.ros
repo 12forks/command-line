@@ -49,7 +49,7 @@ exec ros -Q -- $0 "$@"
   (make-context :cmdline (cons "12forks" args))
   
   (when (getopt :short-name "v")
-    (format t "12forks cli, version: 0.1.0~%")
+    (format t "12forks cli, version: 0.2.0~%")
     (exit))
 
   (when (getopt :long-name "help")
