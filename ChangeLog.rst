@@ -2,6 +2,12 @@
 ChangeLog
 =========
 
+0.3.0 (2016-08-14)
+==================
+
+* Switching to dexador from drakma and using lparallel to run code
+  in 8 workers speeds everything almost in 15 times.
+
 0.2.0 (2016-08-14)
 ==================
 

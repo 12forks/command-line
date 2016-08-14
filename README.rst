@@ -54,7 +54,7 @@ Development
 How to build binaries for linux
 -------------------------------
 
-First, you need t build a docker container with `roswell <>`_::
+First, you need t build a docker container with `roswell <https://github.com/roswell/roswell>`_::
 
   docker build -t 12forks-roswell .
 
@@ -65,7 +65,6 @@ Then, run::
 TODO
 ====
 
-* Optimize processing speed.
 * Add logging and verbose output option.
 * Make analysis if some fork is popular and another forks are made from it
   instead of the base.
