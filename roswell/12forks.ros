@@ -5,7 +5,7 @@ exec ros -Q -- $0 "$@"
 |#
 
 (push (probe-file ".") asdf:*central-registry*)
-(ql:quickload "12forks")
+(ql:quickload "12forks" :silent t)
 
 
 (defpackage :12forks.cli
@@ -47,6 +47,9 @@ exec ros -Q -- $0 "$@"
 
 (defun main (&rest args)
   (make-context :cmdline (cons "12forks" args))
+  
+  ;; initialize lparallel
+  (setf lparallel:*kernel* (lparallel:make-kernel 8))
   
   (when (getopt :short-name "v")
     (format t "12forks cli, version: 0.2.0~%")

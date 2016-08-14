@@ -1,3 +1,2 @@
 (defpackage :12forks
-  (:use :cl)
-)
+  (:use :cl))

@@ -18,17 +18,11 @@
                                    "token "
                                    (get-config :token))))))
     
-    (multiple-value-bind (content code)
-        (drakma:http-request
-         url
-         :force-binary t
-         :connection-timeout 1
-         :additional-headers headers)
+    (let ((content (dex:get
+                    url
+                    :headers headers)))
       
-      (let ((decoded (babel:octets-to-string content :encoding :utf-8)))
-        (if (not (= code 200))
-            (error (format nil "GitHub returned ~A status code." code)))
-        (jonathan:parse decoded)))))
+      (jonathan:parse content))))
 
 
 (defun get-nonmerged-commits (base fork)
@@ -124,7 +118,7 @@ document's secion"
          (branche-names (get-repo-branch-names fork-name))
          (all-branches (progn
                            (info "  It has ~A branches" branche-names)
-                          (mapcar (lambda (branch-full-name)
+                          (lparallel:pmapcar (lambda (branch-full-name)
                                     (analyze-branch
                                      (or (find-branch-by-name base-branches (repo-branch branch-full-name))
                                          master-branch)
@@ -155,7 +149,7 @@ document's secion"
   
   (let* ((fork-names (get-repo-forks repo))
          (repo-branches (get-repo-branch-names repo))
-         (all-forks (mapcar (lambda (fork-name)
+         (all-forks (lparallel:pmapcar (lambda (fork-name)
                           (analyze-fork repo-branches fork-name))
                             fork-names))
          (good-forks (remove-if-not
