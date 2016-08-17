@@ -1,0 +1,11 @@
+("quicklisp" .
+ (:class qlot.source.ql:source-ql-all
+  :initargs (:project-name "quicklisp" :%version :latest)
+  :version "2016-06-28"))
+("dexador" .
+ (:class qlot.source.github:source-github
+  :initargs (:project-name "dexador" :repos "fukamachi/dexador" :ref nil :branch nil :tag nil)
+  :version "github-d1fe8c376e86ed8e399f78beab0ea9d091bf4585"
+  :repos "fukamachi/dexador"
+  :url "https://github.com/fukamachi/dexador/archive/d1fe8c376e86ed8e399f78beab0ea9d091bf4585.tar.gz"
+  :ref "d1fe8c376e86ed8e399f78beab0ea9d091bf4585"))
