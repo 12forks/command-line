@@ -4,6 +4,9 @@
 exec ros -Q -- $0 "$@"
 |#
 
+(declaim (optimize (speed 3)))
+;(declaim (optimize (debug 3)))
+
 (push (probe-file ".") asdf:*central-registry*)
 (ql:quickload "12forks" :silent t)
 
@@ -47,12 +50,16 @@ exec ros -Q -- $0 "$@"
 
 (defun main (&rest args)
   (make-context :cmdline (cons "12forks" args))
+
+  (log:config :daily "12forks.log" :backup nil)
+  (log:info "STARTING")
+  (log:config)
   
   ;; initialize lparallel
   (setf lparallel:*kernel* (lparallel:make-kernel 8))
   
   (when (getopt :short-name "v")
-    (format t "12forks cli, version: 0.3.0~%")
+    (format t "12forks cli, version: ~A~%" 12forks:*version*)
     (exit))
 
   (when (getopt :long-name "help")

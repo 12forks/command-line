@@ -85,3 +85,12 @@ from the rest with at least one empty line."
                 name))
            branches))
 
+(defun get-next-link (header)
+  "Extracts a link to the next page from GitHub's \"link\" header.
+
+Usually, link header contains something like this:
+
+<https://api.github.com/repositories/11654191/forks?page=2>; rel=\"next\", <https://api.github.com/repositories/11654191/forks?page=2>; rel=\"last\"
+"
+
+  (cl-ppcre:register-groups-bind (url) ("<(.*?)>; rel=\"next\"" header) url))

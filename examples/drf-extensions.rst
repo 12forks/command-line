@@ -2,6 +2,641 @@
 chibisov/drf-extensions
 =======================
 
+caffodian/drf-extensions
+========================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+master
+------
+
+Don't mangle @list_route anymore with extended router.  but does this make sense if the mixin for actions is going away?
+
+this also breaks badly under 2.3.x and some tests still need to be rewritten.
+
+alexander-akhmetov/drf-extensions
+=================================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+AndySun25/drf-extensions
+========================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+tume/drf-extensions
+===================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+expobrain/drf-extensions
+========================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+pombredanne/drf-extensions
+==========================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+enikesha/drf-extensions
+=======================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+maryokhin/drf-extensions
+========================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+feature/parent-lookup-regex
+---------------------------
+
+Simplified loop, added doc strings.
+
+damonkelley/drf-extensions
+==========================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+robbyt/drf-extensions
+=====================
+
+auth-cache-test
+---------------
+
+Add failing test to show query param cache fail.
+
+Adding test for authentication keybit.
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+master
+------
+
+Add failing test to show query param cache fail.
+
+param-cache-test
+----------------
+
+Add failing test to show query param cache fail.
+
+Add test for query parameter cache.
+
+user-cache-test
+---------------
+
+Add failing test to show query param cache fail.
+
+Add test for user keybit constructor.
+
+fladi/drf-extensions
+====================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+nofeet/drf-extensions
+=====================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+genba/drf-extensions
+====================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+Tim-Erwin/drf-extensions
+========================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+thedrow/drf-extensions
+======================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+omerzimp/drf-extensions
+=======================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+patch-1
+-------
+
+Added a note that DRF 2.4.x is supported.
+
+ticosax/drf-extensions
+======================
+
+partail-support-for-list_route
+------------------------------
+
+Workaround until @list_route and @detail_route are supported.
+
+zac234/drf-extensions
+=====================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+benctamas/drf-extensions
+========================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+master
+------
+
+Don't cache response if calculated key is None.
+
+willist/drf-extensions
+======================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+jakob-o/drf-extensions
+======================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+feature/same-endpoint-support
+-----------------------------
+
+Added support to use @link and @action with the same endpoint.
+
+Adjusted test to be Python 3 compliant.
+
+Bazzinga/drf-extensions
+=======================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+jamiepg1/drf-extensions
+=======================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+georgewhewell/drf-extensions
+============================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+Phantazm/drf-extensions
+=======================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+avances123/drf-extensions
+=========================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
+un33k/drf-extensions
+====================
+
+dict_filter_backend
+-------------------
+
+Started DictFilterBackend development.
+
+DictFilterBackend initial with tests.
+
+Moved changelog to right place.
+
+Suppress ValidationError.
+
+Readme about DictFilterBackend.
+
+Simplified readme.
+
+Implemented and tested queryset methods filtering with django_filter.
+
+Stop queryset_method evaluation for requests without arguments or filtering.
+
 raphendyr/drf-extensions
 ========================
 

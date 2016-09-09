@@ -26,7 +26,7 @@ Generate a personal access token at `GitHub's settings page <https://github.com/
 
 Run it in a shell::
 
-  ./12forks --token <your-token> some-github/repository > report.rst
+  ./12forks --token <your-token> pallets/flask > report.rst
 
 
 Ideas for webservice
@@ -51,6 +51,26 @@ if you wish to support it.
 Development
 ===========
 
+How to start hacking
+--------------------
+
+1. Install roswell and qlot::
+     brew install roswell
+     ros install qlot
+2. Create local quicklisp::
+     qlot install
+3. Run emacs::
+     qlot exec ros emacs roswell/12forks.ros
+4. Start slime::
+     M-x slime
+5. Load the system::
+     (push (probe-file ".") asdf:*central-registry*)
+     (ql:quickload "12forks" :silent t)
+6. Edit files and run ``analyze-*`` functions::
+     CL-USER> (in-package :12forks)
+     12FORKS> (setf (getf *config* :token) "your-personal-git")
+     
+
 How to build binaries for linux
 -------------------------------
 
@@ -61,6 +81,11 @@ First, you need t build a docker container with `roswell <https://github.com/ros
 Then, run::
 
   docker run --rm -ti -v `pwd`:/app 12forks-roswell bash -c 'cd /app && ros build roswell/12forks.ros'
+
+Similar projects
+================
+
+* http://forked.yannick.io but it shows only number of stars/forks/issues and last update time.
 
 TODO
 ====
