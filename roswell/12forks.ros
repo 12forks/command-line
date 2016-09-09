@@ -34,7 +34,8 @@ exec ros -Q -- $0 "$@"
         :description "Print version number and exit.")
   (flag :long-name "debug"
         :description "Show traceback instead of short message.")
-
+  (stropt :short-name "l" :long-name "log"
+          :description "Filename to write log to.")
   (stropt :short-name "t" :long-name "token"
           :env-var "TOKEN"
           :description "GitHub personal access token."))
@@ -51,9 +52,15 @@ exec ros -Q -- $0 "$@"
 (defun main (&rest args)
   (make-context :cmdline (cons "12forks" args))
 
-  (log:config :daily "12forks.log" :backup nil)
-  (log:info "STARTING")
-  (log:config)
+  (let ((log-filename (getopt :long-name "log")))
+    (when log-filename
+      ;; remove console appenders from the root logger
+      ;; to prevent them output to stdout
+      (let ((state (log4cl::current-state log4cl:*root-logger*)))
+        (setf (log4cl::logger-state-appenders state) nil))
+      
+      (log:config :daily log-filename :backup nil)
+      (log:info "STARTING")))
   
   ;; initialize lparallel
   (setf lparallel:*kernel* (lparallel:make-kernel 8))

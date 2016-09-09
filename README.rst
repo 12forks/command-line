@@ -90,8 +90,8 @@ Similar projects
 TODO
 ====
 
-* Add logging and verbose output option.
 * Make analysis if some fork is popular and another forks are made from it
   instead of the base.
 * Handle networking error like "USOCKET:NS-HOST-NOT-FOUND-ERROR" gracefully.
-* Handle rate limit from GitHub somehow.
+* Notify command-line utility's user about rate limit from GitHub and
+  let him choose to fail or to sleep.
