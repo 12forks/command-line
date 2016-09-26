@@ -11,18 +11,18 @@ exec ros -Q -- $0 "$@"
 (ql:quickload "12forks" :silent t)
 
 
-(defpackage :12forks.cli
-  (:use :cl)
-  (:import-from :net.didierverna.clon
-                :defsynopsis
-                :make-context
-                :getopt
-                :remainder
-                :help
-                :exit))
+(defpackage #:12forks.cli
+  (:use #:cl)
+  (:import-from #:net.didierverna.clon
+                #:defsynopsis
+                #:make-context
+                #:getopt
+                #:remainder
+                #:help
+                #:exit))
 
 
-(in-package :12forks.cli)
+(in-package #:12forks.cli)
 
 
 (defsynopsis (:postfix "REPOSITORY")

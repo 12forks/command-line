@@ -2,6 +2,11 @@
 ChangeLog
 =========
 
+0.4.0 (2016-09-09)
+==================
+
+* Added option ``--log`` to write log to specified file.
+
 0.3.0 (2016-08-14)
 ==================
 

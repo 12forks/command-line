@@ -26,7 +26,7 @@ Generate a personal access token at `GitHub's settings page <https://github.com/
 
 Run it in a shell::
 
-  ./12forks --token <your-token> pallets/flask > report.rst
+  ./12forks --token <your-token> marijnh/Postmodern > report.rst
 
 
 Ideas for webservice
@@ -55,18 +55,29 @@ How to start hacking
 --------------------
 
 1. Install roswell and qlot::
+     
      brew install roswell
      ros install qlot
+     
 2. Create local quicklisp::
+     
      qlot install
+     
 3. Run emacs::
+     
      qlot exec ros emacs roswell/12forks.ros
+     
 4. Start slime::
+     
      M-x slime
+     
 5. Load the system::
+     
      (push (probe-file ".") asdf:*central-registry*)
      (ql:quickload "12forks" :silent t)
+     
 6. Edit files and run ``analyze-*`` functions::
+     
      CL-USER> (in-package :12forks)
      12FORKS> (setf (getf *config* :token) "your-personal-git")
      
@@ -92,6 +103,6 @@ TODO
 
 * Make analysis if some fork is popular and another forks are made from it
   instead of the base.
-* Handle networking error like "USOCKET:NS-HOST-NOT-FOUND-ERROR" gracefully.
+* Handle networking error like ``USOCKET:NS-HOST-NOT-FOUND-ERROR`` gracefully.
 * Notify command-line utility's user about rate limit from GitHub and
   let him choose to fail or to sleep.

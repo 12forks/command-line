@@ -107,3 +107,51 @@
 (lparallel:pmapcar #'worker '(1 2 3 4))
 
 
+(in-package :test-logger)
+
+(defun view (request)
+  (a-log:when-log-message-generated
+      ((a-log:push-into-message :param1 "first" :param2 "second"))
+    (testlog.info "Processing request" :request request)))
+
+
+(defun dispatch (request)
+  (a-log:when-log-message-generated
+      ((a-log:push-into-message :request-id 123))
+    (view request)))
+
+
+;; ;; собираем цепочку логгеров
+;; (with-small-dynamic-extent-vector
+;;     (cats num-cats (- end-depth start-depth))
+;;   (declare (ignore num-cats))
+;;   (let ((cnt 0))
+;;     (declare (type fixnum cnt)) 
+;;     (loop with lgr = logger
+;;        for i fixnum downfrom (1- (logger-depth logger))
+;;        to 0
+;;        do (progn
+;;             ;; (format t "here1 i = ~d logger = ~s file-idx = ~s ~%" i lgr file-idx)
+;;             (unless (< (1- start-depth) i (1- end-depth))
+;;               (setf (svref cats cnt) lgr)
+;;               (incf cnt))
+;;             (setf lgr (%logger-parent lgr)))) 
+;;     (format-categories stream fmt-info cats cnt
+;;                        (or sep (%logger-category-separator logger)))))
+
+;; ;; пишем категории массива логгеров куда-то
+;; (loop for i fixnum from start to end
+;;    as logger = (svref cats (- num-cats i 1))
+;;    ;; do (format t "doing logger ~s ~s ~s ~%" logger (logger-name logger) (%logger-name-start-pos logger))
+;; do (write-string-or-skip (%logger-category logger)
+;;                          (%logger-name-start-pos logger)
+;;                          (length (%logger-category logger))
+;;                          case)
+;; if (/= i end) 
+;; do (write-string-or-skip separator 0
+;;                          (length separator) nil))
+
+
+
+;; dlambda
+
