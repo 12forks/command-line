@@ -7,9 +7,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset={$config.charset}">
     <title>{$config.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{$config.domain}/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="{$config.domain}/css/custom.css" rel="stylesheet" media="screen">
-    <link rel="alternate" href="{$config.domain}/rss.xml" type="application/rss+xml" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/css/custom.css" rel="stylesheet" media="screen">
+    <link rel="alternate" href="/rss.xml" type="application/rss+xml" />
     {if $injections.head}
       {foreach $injection in $injections.head}
         {$injection |noAutoescape}
@@ -23,15 +23,11 @@
           <div class="row-fluid">
             <div class="navbar navbar-inverse">
               <div class="navbar-inner">
-                <a class="brand" href="{$config.domain}">{$config.title}</a>
+                <a class="brand" href="/">{$config.title}</a>
                 <ul class="nav">
                   {foreach $link in $config.sitenav}
                   <li>
-                    {if $link.relative}
-                      <a href="{$config.domain}/{$link.url}">{$link.name}</a>
-                    {else}
-                      <a href="{$link.url}">{$link.name}</a>
-                    {/if}
+                    <a href="{$link.url}">{$link.name}</a>
                   </li>
                   {/foreach}
                 </ul>
@@ -56,14 +52,14 @@
             <p class="fineprint">Created with passion by <em>40Ants</em>
 
             <a id="coleslaw-logo" href="https://github.com/kingcons/coleslaw">
-              <img width="100" height="25" src="{$config.domain}/img/logo_small.jpg" alt="Coleslaw logo" /></p>
+              <img width="100" height="25" src="/img/logo_small.jpg" alt="Coleslaw logo" /></p>
             </a>
           </div>
         </div>
       </div>
     </div>
 
-    <script src="{$config.domain}/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
 {/template}

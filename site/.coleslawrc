@@ -13,8 +13,8 @@
            (:numeric-index  "~d")
            (:feed           "~a.xml")
            (:tag-feed       "tag/~a.xml"))
- :sitenav ((:url "1.html" :name "Blog" :relative t)
-           (:url "about.html" :name "About" :relative t)
+ :sitenav ((:url "/1.html" :name "Blog")
+           (:url "/about.html" :name "About")
            (:url "https://github.com/12forks/command-line/releases" :name "Download"))
  :title "12 Forks"
  :theme "the40ants")
