@@ -66,7 +66,6 @@
 (defmethod coleslaw:deploy (staging)
   (format t "Deploying to GitHub~%")
 
-;  (with-current-directory #P"/Users/art/projects/12forks-experimental")
   (run "git checkout master")
   (run "git branch | grep gh-pages && git branch -D gh-pages || true")
   (run "git checkout --orphan gh-pages")
@@ -83,7 +82,8 @@
 
   (run "git add *")
   (run "git commit -m 'Site updated'")
-  (run "git push --force origin gh-pages"))
+  (run "git push --force origin gh-pages")
+  (run "git checkout master"))
 
 
 (defun enable (&key cname index-page)
