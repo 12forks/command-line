@@ -41,6 +41,7 @@
                           #:rel-path
                           #:fmt
                           #:run-program
+                          #:domain
                           #:with-current-directory
                           #:update-symlink)
   (:export #:enable))
