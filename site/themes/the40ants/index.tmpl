@@ -5,8 +5,10 @@
 {foreach $obj in $index.content}
   <div class="row-fluid">
     <h1><a href="/{$obj.url}">{$obj.title}</a></h1>
+    <!-- INDEX-BEFORE-DATE-POSTED -->
     <p class="date-posted">posted on {$obj.date}</p>
     {$obj.text |noAutoescape}
+    <!-- INDEX-BEFORE-AFTER-POSTED --> 
   </div>
 {/foreach}
 <div id="relative-nav">

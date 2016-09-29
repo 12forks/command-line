@@ -1,6 +1,7 @@
 {namespace coleslaw.theme.the40ants}
 
 {template post}
+<!-- POST -->
 <div class="row-fluid">{\n}
   <h1 class="page-header">{$post.title}</h1>{\n}
   <p>
@@ -12,9 +13,11 @@
     {/if}
   </p>
   <p class="date-posted">
+      <!-- POST-BEFORE-DATE-POSTED -->
     {if $post.date}
       Written on {$post.date}
     {/if}
+        <!-- POST-AFTER-DATE-POSTED -->
   </p>
 
   {$post.text |noAutoescape}
