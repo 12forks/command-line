@@ -3,22 +3,20 @@
 {template post}
 <!-- POST -->
 <div class="row-fluid">{\n}
-  <h1 class="page-header">{$post.title}</h1>{\n}
+  {if $post.title}<h1 class="page-header">{$post.title}</h1>{\n}{/if}
+  {if $post.tags}
   <p>
-    {if $post.tags}
       Tagged as {foreach $tag in $post.tags}
         <a href="/{$tag.url}">{$tag.name}</a>{nil}
           {if not isLast($tag)},{sp}{/if}
       {/foreach}
-    {/if}
   </p>
+  {/if}
+  {if $post.date}
   <p class="date-posted">
-      <!-- POST-BEFORE-DATE-POSTED -->
-    {if $post.date}
       Written on {$post.date}
-    {/if}
-        <!-- POST-AFTER-DATE-POSTED -->
   </p>
+  {/if}
 
   {$post.text |noAutoescape}
   

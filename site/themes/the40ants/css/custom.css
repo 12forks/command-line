@@ -40,3 +40,7 @@ span.paren5 { background-color : inherit; -webkit-transition: background-color 0
 span.paren5:hover { color : inherit; background-color : #CAFFCA; }
 span.paren6 { background-color : inherit; -webkit-transition: background-color 0.2s linear; }
 span.paren6:hover { color : inherit; background-color : #FFBAFF; }
+
+.navbar {
+    margin-top: 2em;
+}
