@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>12 Forks</title> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen"> <link href="/css/custom.css" rel="stylesheet" media="screen"> <link rel="alternate" href="/rss.xml" type="application/rss+xml" />  </head> <body> <div class="container-fluid"> <div class="row-fluid"> <div class="offset2 span8"> <div class="row-fluid"> <div class="navbar"> <div class="navbar-inner"> <a class="brand" href="/">12 Forks</a> <ul class="nav"> <li> <a href="/about.html">Rationale</a> </li><li> <a href="/1.html">Blog</a> </li><li> <a href="https://github.com/12forks/command-line/releases">Download</a> </li> </ul> </div> </div> </div> <div class="row-fluid"> <div class="row-fluid">
+   <div id="rationale" class="document"><h1 class="title">Rationale</h1>
+<p>GitHub is great, but sometimes it is difficult to estimate if there are some valuable code in project's forks. Especially for popular project like xxx.</p>
+<p>This script builds a report with all non merged forks and their commit messages. This allows to read or grep through and find if there are something useful.</p>
+<p>It was born when I looked to IPv6 support in Common Lisp's Postgres library <a class="reference" href="https://github.com/marijnh/Postmodern"><span>Postmodern</span></a>. I started to seatch through numerous forks but finally gave up and started to thing about some sort of automation. That is how 12forks was born.</p>
+<p>Probably, a webservice could be created to automate this precedure. It can build a report on the fly or run this task periodically and create a pull request with report to original repository. Let me know if you are interested in the such service.</p>
+<div id="output-examples" class="section"><h2><a name="output-examples">Output examples</a></h2>
+<ul>
+<li><p class="first last"><a class="reference" href="/examples/postmodern.html"><span>Postmodern's forks</span></a>.</p>
+</li>
+<li><p class="first last"><a class="reference" href="/examples/coleslaw.html"><span>Coleslaw's forks</span></a>.</p>
+</li>
+<li><p class="first last"><a class="reference" href="/examples/drf-extensions.html"><span>Drf-extensions's forks</span></a>.</p>
+</li>
+</ul>
+</div>
+<div id="usage" class="section"><h2><a name="usage">Usage</a></h2>
+<p>Download a binary for your platform from <a class="reference" href="https://github.com/12forks/command-line/releases"><span>releases page</span></a>.</p>
+<p>Generate a personal access token at <a class="reference" href="https://github.com/settings/tokens/new"><span>GitHub's settings page</span></a>.</p>
+<p>Run it in a shell:</p>
+<pre class="literal-block">
+./12forks --token &lt;your-token&gt; marijnh/Postmodern &gt; report.rst
+</pre></div>
+<div id="ideas-for-webservice" class="section"><h2><a name="ideas-for-webservice">Ideas for webservice</a></h2>
+<ul>
+<li><p class="first last">Service could send a pull request when on new commits to project's forks.</p>
+</li>
+<li><p class="first last">An image with badge could countain number of non-merged forks and link from this badge should go to the page with full report.</p>
+</li>
+<li><p class="first last">Service could be configured with simple yaml config file placed inside the repository.</p>
+</li>
+<li><p class="first last">Some king of gamification engine could be used to praise forks merging.</p>
+</li>
+<li><p class="first last">Service could remind people who made a fork and having some non merged commits, to send a pull request or delete the fork if it was experimental.</p>
+</li>
+<li><p class="first last">Embedd this functionality into the GitHub? :)</p>
+</li>
+</ul>
+</div>
+<div id="donations" class="section"><h2><a name="donations">Donations</a></h2>
+<p>This service was started as opensource and nonprofit. Please, donate your time if you wish to support it.</p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <input type="hidden" name="cmd" value="_s-xclick" />
+  <input type="hidden" name="hosted_button_id" value="8DFYPAMH5BGQU" />
+  <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+  <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+</form>
+</div>
+<div id="development" class="section"><h2><a name="development">Development</a></h2>
+<div id="how-to-start-hacking" class="section"><h3><a name="how-to-start-hacking">How to start hacking</a></h3>
+<ol class="arabic" start="1"><li><p class="first">Install roswell and qlot:</p>
+<pre class="literal-block last">
+brew install roswell
+ros install qlot
+</pre></li>
+<li><p class="first">Create local quicklisp:</p>
+<pre class="literal-block last">
+qlot install
+</pre></li>
+<li><p class="first">Run emacs:</p>
+<pre class="literal-block last">
+qlot exec ros emacs roswell/12forks.ros
+</pre></li>
+<li><p class="first">Start slime:</p>
+<pre class="literal-block last">
+M-x slime
+</pre></li>
+<li><p class="first">Load the system:</p>
+<pre class="literal-block last">
+(push (probe-file ".") asdf:*central-registry*)
+(ql:quickload "12forks" :silent t)
+</pre></li>
+<li><p class="first">Edit files and run <tt class="docutils literal">
+<span class="pre">analyze-*</span></tt> functions:</p>
+<pre class="literal-block last">
+CL-USER&gt; (in-package :12forks)
+12FORKS&gt; (setf (getf *config* :token) "your-personal-git")
+
+</pre></li>
+</ol>
+</div>
+<div id="how-to-build-binaries-for-linux" class="section"><h3><a name="how-to-build-binaries-for-linux">How to build binaries for linux</a></h3>
+<p>First, you need t build a docker container with <a class="reference" href="https://github.com/roswell/roswell"><span>roswell</span></a>:</p>
+<pre class="literal-block">
+docker build -t 12forks-roswell .
+</pre><p>Then, run:</p>
+<pre class="literal-block">
+docker run --rm -ti -v `pwd`:/app 12forks-roswell bash -c 'cd /app &amp;&amp; ros build roswell/12forks.ros'
+</pre></div>
+</div>
+<div id="similar-projects" class="section"><h2><a name="similar-projects">Similar projects</a></h2>
+<ul>
+<li><p class="first last"><a class="reference" href="http://forked.yannick.io"><span>http://forked.yannick.io</span></a> but it shows only number of stars/forks/issues and last update time.</p>
+</li>
+</ul>
+</div>
+<div id="todo" class="section"><h2><a name="todo">TODO</a></h2>
+<ul>
+<li><p class="first last">Make analysis if some fork is popular and another forks are made from it instead of the base.</p>
+</li>
+<li><p class="first last">Handle networking error like <tt class="docutils literal">
+<span class="pre">USOCKET:NS-HOST-NOT-FOUND-ERROR</span></tt> gracefully.</p>
+</li>
+<li><p class="first last">Notify command-line utility's user about rate limit from GitHub and let him choose to fail or to sleep.</p>
+</li>
+</ul>
+</div>
+ <ul class="pager"> 
+
+</ul> </div>
+ </div>  <div class="row-fluid"> <hr> <p class="fineprint">Created with passion by <em>40Ants</em> <a id="coleslaw-logo" href="https://github.com/kingcons/coleslaw"> <img width="100" height="25" src="/img/logo_small.jpg" alt="Coleslaw logo" /></p> </a> </div> </div> </div> </div> <script src="/js/bootstrap.min.js"></script> </body> </html>
