@@ -1,5 +1,5 @@
 (:author "Alexander Artemenko"
-;; :deploy-dir "./site-static"
+ :deploy-dir "./site-static"
  :domain "12forks.com"
  :feeds ("blog")
  :plugins (;; (analytics :tracking-code "foo")
@@ -13,8 +13,8 @@
            (:numeric-index  "~d")
            (:feed           "~a.xml")
            (:tag-feed       "tag/~a.xml"))
- :sitenav ((:url "/1.html" :name "Blog")
-           (:url "/about.html" :name "About")
+ :sitenav ((:url "/about.html" :name "Rationale")
+           (:url "/1.html" :name "Blog")
            (:url "https://github.com/12forks/command-line/releases" :name "Download"))
  :title "12 Forks"
  :theme "the40ants")
