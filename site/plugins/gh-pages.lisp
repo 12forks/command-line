@@ -65,15 +65,18 @@
     (let ((remote-branches (get-git-branches :remote t))
           (local-branches (get-git-branches))
           (remote-branch (concatenate 'string "origin/" branch)))
+
       (cond
         ;; checkout to existing local branch
         ((member branch
-                 local-branches)
+                 local-branches
+                 :test #'string=)
          (run "git checkout ~A" branch))
         ;; create a new branch from remote one
         ((member remote-branch
-                 remote-branches)
-         (run "git checkout -b ~A ~A" branch remote-branches))
+                 remote-branches
+                 :test #'string=)
+         (run "git checkout -b ~A ~A" branch remote-branch))
         ;; create a new branch from the HEAD if there is no remote branch
         (t (run "git checkout -b ~A" branch))))))
 
