@@ -126,8 +126,9 @@ pointed by staging-dir and checking out gh-pages branch there."
   (run "git commit -m '~A'" message))
 
 
-(defun git-pull (from-dir)
-  (run "git pull ~A" from-dir))
+(defun git-push ()
+  "Pushes current branch to origin branch."
+  (run "git push origin HEAD"))
 
 
 (defmethod coleslaw:deploy (staging)
@@ -137,9 +138,11 @@ pointed by staging-dir and checking out gh-pages branch there."
     ;; staging is already on gh-page branch
     ;; with fresh files after site compilation
     ;; all we need is to commit changes to the branch
-    (git-commit-all (create-commit-message)))
+    (git-commit-all (create-commit-message))
+    ;; and to push them into the working dir (origin)
+    (git-push))
 
-  ;; and to pull them into the working dir
+
   (git-pull staging)
   
   ;; (run "git checkout master")
