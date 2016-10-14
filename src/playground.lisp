@@ -155,3 +155,39 @@
 
 ;; dlambda
 
+
+(defun equidimensional (a)
+  (or (< (array-rank a) 2)
+      (apply #'= (array-dimensions a))))
+
+(deftype square-matrix (&optional type size)
+  `(and (array ,type (,size ,size))
+        (satisfies equidimensional)))
+
+;; квадратная матрица 2x2
+(defparameter *a1* (make-array '(2 2) :initial-contents '((1 2) (3 4))))
+;; матрица 2x3
+(defparameter *a2* (make-array '(2 3) :initial-contents '((1 2 3) (4 5 6))))
+
+(defun square-p (array)
+  ;; сравниваем тип данной нам матрицы с квадратной
+  (typecase array
+    (square-matrix t)
+    (t nil)))
+
+(square-p *a1*) => T
+(square-p *a2*) => NIL
+
+(defun process-square (matrix)
+  (declare (type square-matrix matrix)
+           (ignorable matrix))
+  (print "Processing square matrix"))
+
+(process-square *a1*) => Prints "Processing square matrix"
+(process-square *a2*) => Raises condition
+;; The value
+;;   #2A((1 2 3) (4 5 6))
+;; is not of type
+;;   (AND (ARRAY * (* *))
+;;        (SATISFIES CL-USER::EQUIDIMENSIONAL))
+

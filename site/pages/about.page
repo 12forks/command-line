@@ -15,7 +15,7 @@ This script builds a report with all non merged forks and their commit
 messages. This allows to read or grep through and find if there are something
 useful.
 
-It was born when I looked to IPv6 support in Common Lisp's Postgres
+It was born when I looked for IPv6 support in Common Lisp's Postgres
 library `Postmodern`_. I started to seatch through numerous forks but finally
 gave up and started to thing about some sort of automation. That is how
 12forks was born.
