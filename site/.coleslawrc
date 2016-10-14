@@ -6,7 +6,9 @@
            ;; (disqus :shortname "my-site-name")
            (static-pages)
            (rst)
-           (gh-pages :index-page "about.html"))
+           (gh-pages
+            :index-page "about.html"
+            :push t))
  :routing ((:post           "posts/~a")
            (:tag-index      "tag/~a")
            (:month-index    "date/~a")
