@@ -1,5 +1,5 @@
-;; (eval-when (:compile-toplevel :load-toplevel)
-;;   (ql:quickload 'puri))
+(eval-when (:compile-toplevel :load-toplevel)
+  (ql:quickload 'local-time))
 
 
 (defpackage :coleslaw-gh-pages
@@ -30,6 +30,9 @@
 
 (defvar *index-page* nil
   "Name of the page to make an \"index\". For example: \"about.html\".")
+
+(defvar *push-to-github* nil
+  "If true, then new site will be pushed to the github after successful deployment.")
 
 
 (defun run (program &rest args)
@@ -100,12 +103,14 @@ pointed by staging-dir and checking out gh-pages branch there."
   (remove-git-files staging-dir))
 
 
-(defun enable (&key cname index-page)
+(defun enable (&key cname index-page push)
   (setf *cname* (if cname
                     cname
                     (domain *config*)))
 
   (setf *index-page* index-page)
+
+  (setf *push-to-github* push)
 
   (prepare-staging-dir (staging-dir *config*)))
 
@@ -135,6 +140,13 @@ pointed by staging-dir and checking out gh-pages branch there."
   (format t "Deploying to GitHub~%")
 
   (with-current-directory staging
+    (when *cname*
+      (run "echo ~a > CNAME" *cname*))
+  
+    (when *index-page*
+      (run "rm index.html")
+      (run "cp ~a index.html" *index-page*))
+
     ;; staging is already on gh-page branch
     ;; with fresh files after site compilation
     ;; all we need is to commit changes to the branch
@@ -143,26 +155,9 @@ pointed by staging-dir and checking out gh-pages branch there."
     (git-push))
 
 
-  (git-pull staging)
-  
-  ;; (run "git checkout master")
-  ;; (run "git branch | grep gh-pages && git branch -D gh-pages || true")
-  ;; (run "git checkout --orphan gh-pages")
-  ;; (run "rm -fr *")
-  ;; (run "git rm -rf .")
-  ;; (run "mv ~a* ~a" staging (uiop:getcwd))
-
-  (when *cname*
-    (run "echo ~a > CNAME" *cname*))
-  
-  (when *index-page*
-    (run "rm index.html")
-    (run "cp ~a index.html" *index-page*))
-
-
-  (run "git add *")
-  (run "git commit -m 'Site updated'")
-  (run "git push --force origin gh-pages")
-  (run "git checkout master"))
+  (when *push-to-github*
+    ;; if :push option was given, then upload
+    ;; changes to the GitHub
+    (git-push)))
 
 
