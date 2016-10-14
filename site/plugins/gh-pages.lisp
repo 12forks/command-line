@@ -131,9 +131,12 @@ pointed by staging-dir and checking out gh-pages branch there."
   (run "git commit -m '~A'" message))
 
 
-(defun git-push ()
+(defun git-push (&optional branch)
   "Pushes current branch to origin branch."
-  (run "git push origin HEAD"))
+  (run "git push origin ~A"
+       (if branch
+           branch
+           "HEAD")))
 
 
 (defmethod coleslaw:deploy (staging)
@@ -156,8 +159,8 @@ pointed by staging-dir and checking out gh-pages branch there."
 
 
   (when *push-to-github*
-    ;; if :push option was given, then upload
-    ;; changes to the GitHub
-    (git-push)))
+    ;; if :push option was given, then upload gh-pages branch
+    ;; to the GitHub
+    (git-push "gh-pages")))
 
 
