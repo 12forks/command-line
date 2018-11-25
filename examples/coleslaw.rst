@@ -2,6 +2,197 @@
 kingcons/coleslaw
 =================
 
+equwal/coleslaw
+===============
+
+master
+------
+
+Automatically expand load command for any lisp implementation that someone might be using for this.
+
+truex.eu
+--------
+
+Automatically expand load command for any lisp implementation that someone might be using for this.
+
+New themes.
+
+For server.
+
+programingship/coleslaw
+=======================
+
+master
+------
+
+An url should be lowercase.
+
+Disqus js will refuse executing when use https.
+
+Manual loading Disqus.
+
+Fix disqus loading link.
+
+Prefer slug url to title one.
+
+Adjust article title to 1.2em.
+
+Added favicon head link.
+
+Body font use 16px size.
+
+Revert "Manual loading Disqus"
+
+This reverts commit 9d79d0bd08b417300c4a8cf990d25a37faa5aca0.
+
+wangjiezhe/coleslaw
+===================
+
+develop
+-------
+
+Update the disqus universal embed script.
+
+Remove site-url config in disqus.
+
+guicho271828/coleslaw
+=====================
+
+README
+------
+
+README plug-ins look better on a table format.
+
+Move the orders; hacking is less important for new users.
+
+Less mental steps before reaching Installation.
+
+base-template-span
+------------------
+
+[hyde template] use span + CSS for the sitenav separator.
+
+Absolute address to root with {$config.domain} is not necessary
+
+This is problematic when I preview the generated results with clack
+
+clackup <(echo "(lack:builder (:static :path #'identity) #'identity)")
+
+All links got broken due to the reference to {$config.domain}
+
+roswell
+-------
+
+[README] plug-ins look better on a table format.
+
+[README] move the orders; hacking is less important for new users.
+
+[README] less mental steps before reaching Installation.
+
+Implemented coleslaw roswell command.
+
+[README] Roswell-based tutorial.
+
+[coleslaw -h]
+
+[coleslaw new] optional third argument NAME for coleslaw new.
+
+[coleslaw new] when `type` is `page`, insert the URL.
+
+[coleslaw copy-theme] coleslaw copy-theme.
+
+[coleslaw preview] new roswell subcommand, static server using clack.
+
+[coleslaw watch] added a new command.
+
+[coleslaw watch-preview] added another command.
+
+[coleslaw new] fix the default date; "day" was Mon, Tue etc.
+
+[coleslaw preview] preview dir defaults to the deploy-dir.
+
+Make the script automatically compiled when `ros install`ed.
+
+rsync-deploy
+------------
+
+Removed the default deploy method and added RSYNC plugin.
+
+As requested (Im not sure)
+
+adlai/coleslaw
+==============
+
+master
+------
+
+Initial draft of snide theme, cribbed from hyde.
+
+abeaumont/coleslaw
+==================
+
+master
+------
+
+Add support for either an automatic or manual excerpt for index.
+
+Include :excerpt metadata in test.
+
+Modify existing themes' index to make use of posts' excerpt.
+
+Update documentation and config example for excerpt support.
+
+Fix indentation.
+
+Fix excerpt generation
+
+Excerpt must be set before text is set, since text may be needed to
+generate the excerpt and it should not be already rendered.
+
+novalix/coleslaw
+================
+
+hyde-resp
+---------
+
+Create HTML for the mobile nav to work and add link to new css file.
+
+Add IDs for relative-nav links.
+
+Add IDs for relative-nav links.
+
+Change relative-nav div from id to class.
+
+Remove "float: left" from article-meta and article-content classes, since they are not really needed anyway and somtimes produce strange artifacts. Reduce the padding of these classes from 5 to 4%. Add styles for the relative links.
+
+Add Stylesheet for the mobile navigation including blank lines and comments for readability and hopefully clarity.
+
+svetlyak40wt/coleslaw
+=====================
+
+better-gh-pages-plugin
+----------------------
+
+Now gh-pages plugin is able to push site to github
+
+Previously, gh-pages plugin only created a CNAME file
+inside a staging directory, but this version
+is able to update gh-pages branch of the current
+repository and to push this branch to the GitHub.
+
+This way, publishing site becomes as simple, as:
+
+    coleslaw .
+
+better-rst-plugin
+-----------------
+
+Remove unnecessary HTML elements, such as html, head, body.
+
+Hanging paren and space were removed.
+
+Using `write-document` without `with-output-to-string`.
+
 ebrasca/coleslaw
 ================
 
@@ -43,27 +234,6 @@ Refactored code to implement template engine as plugins.
 Added templates for atom, rss and sitemap each template engine.
 
 Updated source to add template engine to calls for rendering.
-
-mordocai/coleslaw
-=================
-
-mordocai-net-head
------------------
-
-Add blog-index and site-index-page to config.
-
-Move static files to be put directly in root.
-
-This allows things like favicon.ico and robots.txt and similar.
-
-However, it doesn't clean up old files so you will have to cleanup the
-dist/staging dirs yourself.
-
-Make blog page not the index and allow index conf
-
-This is far from the best way to do this, but works for me for now.
-
-Fix blog-index default.
 
 mawis/coleslaw
 ==============
@@ -159,16 +329,6 @@ metadata
 
 Added Metadata Plugin and documentation.
 
-dertuxmalwieder/coleslaw
-========================
-
-master
-------
-
-Added support for isso: http://posativ.org/isso/
-
-Added info.
-
 dmitrys99/coleslaw
 ==================
 
@@ -197,7 +357,7 @@ Preliminary CLI work
   * src/config.lisp: load-config now takes the path to the config file
     as an argument instead of trying to discover it itself.
 
-hernanex3/coleslaw
+hdigiorgi/coleslaw
 ==================
 
 cli-commands
@@ -378,93 +538,6 @@ added class-name-p function to util
 refactored incremental plugin process-change and documents purge-all
 to use class-name-p when matching against exact class names.
 
-zlrth/coleslaw
-==============
-
-dev
----
-
-Bugfix: Feed should be an abstract class.
-
-Remove scaffolded parallel plugin.
-
-jamiepg1/coleslaw
-=================
-
-basic-deploy
-------------
-
-Bugfix: Feed should be an abstract class.
-
-Remove scaffolded parallel plugin.
-
-Tentatively factor deploy method into git-hook plugin. TODO follows...
-
-* Deploy :after plugins probably need revision now, and coleslaw-heroku.
-* README, HACKING need updates. Plugin-api.md too.
-* NEWS needs a carefully worded entry.
-
-Is that what we want?
-
-Incremental compilation is done, note some new goals.
-
-Add some error-handling notes.
-
-More notes.
-
-Some TODO notes.
-
-Bugfixes.
-
-Half-way commit to getting hardcoded paths out of templates.
-
-dev
----
-
-Bugfix: Feed should be an abstract class.
-
-Remove scaffolded parallel plugin.
-
-Ferada/coleslaw
-===============
-
-basic-deploy
-------------
-
-Bugfix: Feed should be an abstract class.
-
-Remove scaffolded parallel plugin.
-
-Tentatively factor deploy method into git-hook plugin. TODO follows...
-
-* Deploy :after plugins probably need revision now, and coleslaw-heroku.
-* README, HACKING need updates. Plugin-api.md too.
-* NEWS needs a carefully worded entry.
-
-Is that what we want?
-
-Incremental compilation is done, note some new goals.
-
-Add some error-handling notes.
-
-More notes.
-
-custom-eval
------------
-
-Introduce custom bindings form for posts.
-
-Use `bindings: name1 value1 ...` to bind special variables while
-compiling a post.  Only a single bindings directive is supported in the
-post metadata.
-
-Fix order of forms.
-
-dev
----
-
-Bugfix: Feed should be an abstract class.
-
 a1ip/coleslaw
 =============
 
@@ -547,6 +620,56 @@ Verify that parse-field returns an array.
 
 Otherwise read-content fails to parse files with empty headers as it tries to aref nil.
 
+theme-engine-backend-djula-plugin
+---------------------------------
+
+Introduce the theme-engine protocol
+
+The goal of this protocol is to allow users to customize what templates
+their themes use. Introduce a new generic function GET-THEME-FN and make
+COMPILE-THEME a generic function as well. Move all the cl-closure
+template specific code to closure-template-engine
+
+Thanks to Thomas Schaper (@libre-man)!
+
+Add Djula theme engine plugin
+
+There is some friction between djula templates and Coleslaw themes because the
+concepts of themes in Coleslaw are strongly tied to cl-closure. Two things in
+particular:
+
+1. Templates are named by symbols. Themes have a name under
+   namespaces. This is a straighforward map to CL's symbol names and
+   packages.
+2. Theme functions take a plist as a context, injected data
+   in cl-closure terms.
+
+In Djula on the other hand
+
+1. Templates are named by strings or pathnames and are looked up in a
+   search path
+2. The RENDER-TEMPLATE* function uses keyword arguments,
+   instead of a plist.
+
+To bridge over the second difference we use the spreadable argument list
+designator of APPLY
+
+To bridge over the first difference we implement a system similar to
+cl-closure, where a symbol maps to to the function to be called when
+rendering the template. This mapping is stored in *TEMPLATE-STORE*.
+
+theme-engine-backend
+--------------------
+
+Introduce the theme-engine protocol
+
+The goal of this protocol is to allow users to customize what templates
+their themes use. Introduce a new generic function GET-THEME-FN and make
+COMPILE-THEME a generic function as well. Move all the cl-closure
+template specific code to closure-template-engine
+
+Thanks to Thomas Schaper (@libre-man)!
+
 twitter-summary-card
 --------------------
 
@@ -558,8 +681,8 @@ Bind content-text & add quotes to HTML attributes.
 
 Add tests as a PoC. Do not for merge.
 
-nathanielksmith/coleslaw
-========================
+vilmibm/coleslaw
+================
 
 theme
 -----
