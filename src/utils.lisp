@@ -93,4 +93,5 @@ Usually, link header contains something like this:
 <https://api.github.com/repositories/11654191/forks?page=2>; rel=\"next\", <https://api.github.com/repositories/11654191/forks?page=2>; rel=\"last\"
 "
 
-  (cl-ppcre:register-groups-bind (url) ("<(.*?)>; rel=\"next\"" header) url))
+  (cl-ppcre:register-groups-bind (url) ("<(.*?)>; rel=\"next\"" header)
+                                 url))
